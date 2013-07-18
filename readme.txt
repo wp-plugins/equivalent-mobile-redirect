@@ -1,6 +1,6 @@
 === Equivalent Mobile Redirect ===
 
-Contributors: Jesse Sneider
+Contributors: uniquelylost, Jesse Sneider
 Tags: mobile redirect, mobile detect, equivalent, mobile, redirection, detection
 Requires at least: 3.3
 Tested up to: 3.5.2
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Detect and redirect mobile visitors to the equivalent page on your mobile site.
 
 == Description ==
-This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. 
+This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. Redirects are set by entering the page title you want to redirect and a corresponding URL. This plugin also gives you the ability to allow mobile viewers to bypass the mobile redirect and "View Full Site" by using a cookie that can easily be set on your mobile site.
 
 == Installation ==
 
@@ -46,6 +46,10 @@ You should add the full mobile URL including the "http://". For example: http://
 
 = How can I give my users the option to view the full site =
 If you want to use this feature set a link to "http://example.com/?view_full_site=true" anywhere on your mobile site. By default the cookie is set to expire after 24 hours.
+
+== Screenshots ==
+
+1. Screenshot of admin page
 
 == Changelog ==
 = 1.0.1 (2013/07/16) =
