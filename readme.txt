@@ -4,7 +4,7 @@ Contributors: uniquelylost, Jesse Sneider
 Tags: mobile redirect, mobile detect, equivalent, mobile, redirection, detection
 Requires at least: 3.3
 Tested up to: 3.5.2
-Stable tag: 1.0.2
+Stable tag: 1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -52,6 +52,14 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 1. Screenshot of admin page
 
 == Changelog ==
+= 1.3 (2013/7/19) =
+* Added checkbox to enable/disable homepage redirect
+* Added more possible redirects
+
+
+= 1.0.2 (2013/07/18) =
+* Quick clean up
+
 = 1.0.1 (2013/07/16) =
 * Inital release
 

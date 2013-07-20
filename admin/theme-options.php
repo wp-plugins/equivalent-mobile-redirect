@@ -47,20 +47,32 @@ if (!function_exists('of_options')) {
 
          $options[] = array("name" => __("Equivalent Mobile Redirect Settings",'wpw'),
             "type" => "header");
-		
-		 $options[] = array("name" => __("Enable Redirect",'wpw'),
+			
+		$options[] = array("name" => __("Enable Redirect",'wpw'),
             "desc" => __("",'wpw'),
             "id" => "wpw_emr_enable",
-			"desc" => "Do you want to Enable Redirect?",
+			"desc" => "Do you want to Enable Page/Post Redirects?",
             "type" => "checkbox");
 			
-		 $options[] = array("name" => __("Page Title #1 - e.g. Home ",'wpw'),
+		$options[] = array("name" => __("Enable Homepage Redirect",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_thehomeenable",
+			"desc" => "Enable the Homepage Redirect?",
+            "type" => "checkbox");
+		
+		$options[] = array("name" => __("Mobile Homepage URL - http://m.sample.com ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_home",
+			"desc" => "",
+            "type" => "text");
+			
+		 $options[] = array("name" => __("Page Title #1 - e.g. About ",'wpw'),
             "desc" => __("",'wpw'),
             "id" => "wpw_emr_t1",
 			"desc" => "",
             "type" => "text");
 		
-		$options[] = array("name" => __("Mobile Site URL #1 - e.g. http://m.sample.com ",'wpw'),
+		$options[] = array("name" => __("Mobile Site URL #1 - http://m.sample.com/about ",'wpw'),
             "desc" => __("",'wpw'),
             "id" => "wpw_emr_murl1",
 			"desc" => "",
@@ -174,6 +186,101 @@ if (!function_exists('of_options')) {
 			"desc" => "",
             "type" => "text");
 			
+		$options[] = array("name" => __("Page Title #11: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t11",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #11: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl11",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Page Title #12: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t12",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #12: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl12",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Page Title #13: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t13",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #13: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl13",
+			"desc" => "",
+            "type" => "text");
+			
+		$options[] = array("name" => __("Page Title #14: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t14",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #14: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl14",
+			"desc" => "",
+            "type" => "text");
+			
+		$options[] = array("name" => __("Page Title #15: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t15",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #15: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl15",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Page Title #16: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t16",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #16: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl16",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Page Title #17: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t17",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #17: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl17",
+			"desc" => "",
+            "type" => "text");
+			
+		$options[] = array("name" => __("Page Title #18: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_t18",
+			"desc" => "",
+            "type" => "text");
+		
+		$options[] = array("name" => __("Mobile Site URL #18: ",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_murl18",
+			"desc" => "",
+            "type" => "text");
 			
 			
 			$options[] = array("name" => __("View Full Site Option",'wpw'),

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Equivalent Mobile Redirect    
 Description: This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. 
-Version: 1.0.2
+Version: 1.3
 Author: Jesse Sneider
 Author URI: http://ndgraphic.com
 License: GPL3
@@ -34,22 +34,27 @@ function wpw_template_include($template)
 	$domain = parse_url($site_url, PHP_URL_HOST);
 		if($get_cookie_check =='true'){
 			//set the cookie
-			setcookie("mobileesp_wp_full_site", 1, time()+86400, "/", $domain);
-			$_COOKIE['mobileesp_wp_full_site'] = 1;
+			setcookie("mobilethe_wp_full_site", 1, time()+86400, "/", $domain);
+			$_COOKIE['mobilethe_wp_full_site'] = 1;
 
 		}
 		if($get_cookie_check =='false'){
 			//set the cookie
-			setcookie("mobileesp_wp_full_site", 0, time()-3600, "/", $domain);
-			$_COOKIE['mobileesp_wp_full_site'] = 0;
+			setcookie("mobilethe_wp_full_site", 0, time()-3600, "/", $domain);
+			$_COOKIE['mobilethe_wp_full_site'] = 0;
 
 		}
 	}
 	//cookie variable
-	$full_site_cookie= $_COOKIE['mobileesp_wp_full_site']; 
+	$full_site_cookie= $_COOKIE['mobilethe_wp_full_site']; 
 	
 	//cookie empty then include
-	if (empty($full_site_cookie) && (wpw_get_option('wpw_emr_enable') && (is_single() || is_page())))
+	if (empty($full_site_cookie) && (wpw_get_option('wpw_emr_thehomeenable') && (is_front_page() || is_home()))){
+	include('includes/Mobile_Detect.php');
+	$detect = new Mobile_Detect();
+    if ($detect->isMobile()){
+	wp_redirect(wpw_get_option('wpw_emr_home')); exit;}}
+	elseif (empty($full_site_cookie) && (wpw_get_option('wpw_emr_enable') && (is_single() || is_page())))
 	{
 		include('includes/Mobile_Detect.php');
 		
@@ -65,7 +70,15 @@ function wpw_template_include($template)
 		$page_array[] = trim(wpw_get_option('wpw_emr_t8'));
 		$page_array[] = trim(wpw_get_option('wpw_emr_t9'));
 		$page_array[] = trim(wpw_get_option('wpw_emr_t10'));
-		
+		$page_array[] = trim(wpw_get_option('wpw_emr_t11'));
+		$page_array[] = trim(wpw_get_option('wpw_emr_t12'));
+		$page_array[] = trim(wpw_get_option('wpw_emr_t13'));
+		$page_array[] = trim(wpw_get_option('wpw_emr_t14'));
+		$page_array[] = trim(wpw_get_option('wpw_emr_t15'));
+		$page_array[] = trim(wpw_get_option('wpw_emr_t16'));
+		$page_array[] = trim(wpw_get_option('wpw_emr_t17'));
+		$page_array[] = trim(wpw_get_option('wpw_emr_t18'));
+
 		$title = get_the_title();
 		if($title && $page_array && in_array($title,$page_array))
 		{
@@ -83,5 +96,4 @@ function wpw_template_include($template)
 	}
 	return $template;	
 }
-
 	
