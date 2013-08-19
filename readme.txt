@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Detect and redirect mobile visitors to the equivalent page on your mobile site.
 
 == Description ==
-This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. Redirects are set by entering the page title you want to redirect and a corresponding URL. This plugin also gives you the ability to allow mobile viewers to bypass the mobile redirect and "View Full Site" by using a cookie that can easily be set on your mobile site.
+This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. Redirects are set by enabling/disabling the checkbox and/or by entering the page title you want to redirect and a corresponding URL. By default there are up to 18 possible redirects. This plugin also gives you the ability to allow mobile viewers to bypass the mobile redirect and "View Full Site" by using a cookie that can easily be set on your mobile site. If you want to use this feature set a link to "http://example.com/?view_full_site=true" anywhere on your mobile site.
 
 == Installation ==
 
@@ -21,16 +21,18 @@ This WordPress plugin will detect mobile devices and redirect the user to the eq
 3. Next search for Equivalent Mobile Redirect and click the install button.
 4. Locate the "EMR Redirect" settings menu
 5. Enable mobile redirect by checking the enable checkbox.
-6. Fill in the full site page title (ex. Home) and the equivalent mobile site URL (ex. http://example.com) you would like to redirect the mobile visitors to.
-7.  Select "Save Options".
+6. Enable Homepage redirect by checking the enbale checkbox and enter the corrosponding mobile site URL (ex. http://example.com).
+7. Fill in the full site page title (ex. About) and the equivalent mobile site URL (ex. http://example.com) you would like to redirect the mobile visitors to.
+8.  Select "Save Options".
 
 = Manual Install =
 1. Extract the contents of equivalent-mobile-redirect.zip and upload to the wp-content/plugins folder.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 4. Locate the "EMR Redirect" settings menu
 5. Enable mobile redirect by checking the enable checkbox.
-6. Fill in the full site page title (ex. Home) and the equivalent mobile site URL (ex. http://example.com) you would like to redirect the mobile visitors to.
-7.  Select "Save Options".
+6. Enable Homepage redirect by checking the enbale checkbox and enter the corrosponding mobile site URL (ex. http://example.com).
+7. Fill in the full site page title (ex. About) and the equivalent mobile site URL (ex. http://example.com) you would like to redirect the mobile visitors to.
+8.  Select "Save Options".
 
 
 == Frequently Asked Questions ==
