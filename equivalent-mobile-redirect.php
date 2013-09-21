@@ -2,7 +2,7 @@
 /*
 Plugin Name: Equivalent Mobile Redirect    
 Description: This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. 
-Version: 1.3
+Version: 1.4
 Author: Jesse Sneider
 Author URI: http://ndgraphic.com
 License: GPL3
