@@ -54,6 +54,9 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 1. Screenshot of admin page
 
 == Changelog ==
+= 1.4 (2013/9/21) =
+* Added option to enable/disable tablet redirects
+
 = 1.3 (2013/7/19) =
 * Added checkbox to enable/disable homepage redirect
 * Added more possible redirects

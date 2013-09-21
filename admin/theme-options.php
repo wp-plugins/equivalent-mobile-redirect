@@ -54,6 +54,12 @@ if (!function_exists('of_options')) {
 			"desc" => "Do you want to Enable Page/Post Redirects?",
             "type" => "checkbox");
 			
+		$options[] = array("name" => __("Disable Tablet Redirect",'wpw'),
+            "desc" => __("",'wpw'),
+            "id" => "wpw_emr_disabletablet",
+			"desc" => "Disable tablet Redirect?",
+            "type" => "checkbox");
+			
 		$options[] = array("name" => __("Enable Homepage Redirect",'wpw'),
             "desc" => __("",'wpw'),
             "id" => "wpw_emr_thehomeenable",

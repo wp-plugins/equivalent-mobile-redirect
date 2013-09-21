@@ -52,8 +52,13 @@ function wpw_template_include($template)
 	if (empty($full_site_cookie) && (wpw_get_option('wpw_emr_thehomeenable') && (is_front_page() || is_home()))){
 	include('includes/Mobile_Detect.php');
 	$detect = new Mobile_Detect();
-    if ($detect->isMobile()){
-	wp_redirect(wpw_get_option('wpw_emr_home')); exit;}}
+		if ($detect->isTablet() && (wpw_get_option('wpw_emr_disabletablet'))) {
+		$detect = "false"; 
+		}
+		elseif ($detect->isMobile()){
+		wp_redirect(wpw_get_option('wpw_emr_home')); exit;
+		}
+	}
 	elseif (empty($full_site_cookie) && (wpw_get_option('wpw_emr_enable') && (is_single() || is_page())))
 	{
 		include('includes/Mobile_Detect.php');
@@ -87,9 +92,12 @@ function wpw_template_include($template)
 			if(strlen($url)>4)
 			{
 				$detect = new Mobile_Detect();
-				if ($detect->isMobile())
+				if ($detect->isTablet() && (wpw_get_option('wpw_emr_disabletablet'))) {
+				$detect = "false"; 
+				}
+				elseif ($detect->isMobile())
 				{
-					wp_redirect($url);exit;
+				wp_redirect($url);exit;
 				}
 			}
 		}
