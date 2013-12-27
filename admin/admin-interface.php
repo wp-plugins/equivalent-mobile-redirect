@@ -6,11 +6,9 @@
 // Load static framework options pages 
 $functions_path = WPW_ADMIN_PATH;
 function wpw_theme_options_add_admin() {
-    global $query_string;
-    
-    $themename =  get_option('current_theme');      
-   
-    if ( isset($_REQUEST['page']) && $_REQUEST['page'] == 'wpw_theme_options' ) {
+	global $query_string;
+	$themename =  get_option('current_theme');
+	if ( isset($_REQUEST['page']) && $_REQUEST['page'] == 'wpw_theme_options' ) {
 		if (isset($_REQUEST['of_save']) && 'reset' == $_REQUEST['of_save']) {
 			$options =  wpw_get_option('of_template'); 
 			wpw_reset_options($options,'wpw_theme_options');
@@ -18,10 +16,9 @@ function wpw_theme_options_add_admin() {
 			die;
 		}
     }
-		
 	// Add framework functionaily to the head individually
 	add_action("admin_print_scripts", 'wpw_load_only');
-} 
+}
 add_action('admin_menu', 'wpw_theme_options_add_admin');
 /*-----------------------------------------------------------------------------------*/
 /* Options Framework Reset Function - of_reset_options */
@@ -112,7 +109,8 @@ function wpw_theme_options_options_page(){
     </span>
   </form>
 </div>
-<?php  if (!empty($update_message)) echo $update_message; ?>
+<?php
+if (!empty($update_message)) echo $update_message; ?>
 <div style="clear:both;"></div>
 </div>
 <!--wrap-->
@@ -525,12 +523,10 @@ function wpw_theme_options_machine($options) {
 			$output .= '<div class="option">'."\n" . '<div class="controls">'."\n";
 		 } 
 		 //End Heading
-		$select_value = ''; 
-        $val = wpw_get_option($value['id']);       
-		if(!$val){$val = $value['std'];}
-		
+		$select_value = '';
+		if(isset($value['id'])){ $val = wpw_get_option($value['id']); }
+		if(isset($value['std'])){ if(!$val){$val = $value['std'];}}
 		switch ( $value['type'] ) {
-
 		case 'headeronly':
 			$output .= '<h3 class="heading">'. $value['label'] .'</h3>';
 		break;
@@ -540,7 +536,7 @@ function wpw_theme_options_machine($options) {
 			//$std = wpw_get_option($value['id']);
 			//if ( $std != "") { $val = $std; }
 			$output .= '<input class="of-input" name="'. $value['id'] .'" id="'. $value['id'] .'" type="'. $value['type'] .'" value="'. $val .'" />';
-			if($value['label']){$output .= '<label class="explain">'. $value['label'] .'</label>';}
+			if(isset($value['label'])){$output .= '<label class="explain">'. $value['label'] .'</label>';}
 		break;
                 
            case 'select':
@@ -604,7 +600,7 @@ function wpw_theme_options_machine($options) {
 		break;
 		case "checkbox": 
 			//$output .= '<input id="' . esc_attr($value['id']) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr($option_name . '[' . $value['id'] . ']') . '" ' . checked($val, 1, false) . ' />';
-			$val = $value['std'];
+			if(isset($value['std'])){ $val = $value['std']; }
 			$checked = '';
 			if(wpw_get_option($value['id'])){
 				$checked = 'checked="checked"';

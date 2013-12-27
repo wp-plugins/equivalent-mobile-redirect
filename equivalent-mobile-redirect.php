@@ -2,8 +2,8 @@
 /*
 Plugin Name: Equivalent Mobile Redirect    
 Description: This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. 
-Version: 1.4
-Author: Jesse Sneider
+Version: 1.5
+Author: uniquelylost
 Author URI: http://ndgraphic.com
 License: GPL3
 */
@@ -27,7 +27,7 @@ function wpw_template_include($template)
 * cookie or include
 *********************************/
 	//Let's see if we should set the full site cookie
-	$get_cookie_check = $_GET['view_full_site'];
+	if(isset($_GET['view_full_site'])){ $get_cookie_check = $_GET['view_full_site']; }
 	if(isset($get_cookie_check)){
 	//strip the http://www from the domain 
 	$site_url =  site_url();
@@ -46,8 +46,7 @@ function wpw_template_include($template)
 		}
 	}
 	//cookie variable
-	$full_site_cookie= $_COOKIE['mobilethe_wp_full_site']; 
-	
+	if(isset($_COOKIE['mobilethe_wp_full_site'])){ $full_site_cookie= $_COOKIE['mobilethe_wp_full_site']; }
 	//cookie empty then include
 	if (empty($full_site_cookie) && (wpw_get_option('wpw_emr_thehomeenable') && (is_front_page() || is_home()))){
 	include('includes/Mobile_Detect.php');
