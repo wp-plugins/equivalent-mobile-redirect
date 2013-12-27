@@ -1,10 +1,10 @@
 === Equivalent Mobile Redirect ===
 
-Contributors: uniquelylost, Jesse Sneider
+Contributors: uniquelylost
 Tags: mobile redirect, mobile detect, equivalent, mobile, redirection, detection
 Requires at least: 3.3
-Tested up to: 3.6.1
-Stable tag: 1.4
+Tested up to: 3.8
+Stable tag: 1.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -54,6 +54,11 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 1. Screenshot of admin page
 
 == Changelog ==
+= 1.5 (2013/12/26) =
+* Cleaned up notices and warnings
+* Tested compatibility with child themes
+* Tested compatibility with wordpress 3.8
+
 = 1.4 (2013/9/21) =
 * Added option to enable/disable tablet redirects
 

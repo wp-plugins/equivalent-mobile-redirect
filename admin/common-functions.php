@@ -5,39 +5,25 @@
 echo '<pre>';
 print_r($options);
 echo '</pre>';exit;*/
-
-$admin_menu_access_level = apply_filters('wpw_admin_menu_access_level_filter',8);
-define('TEMPL_ACCESS_USER',8);
-add_action('admin_menu', 'wpw_admin_menu'); //Add new menu block to admin side
-
+$admin_menu_access_level = apply_filters('wpw_admin_menu_access_level_filter', 'install_plugins');
+define('TEMPL_ACCESS_USER', 'install_plugins');
+add_action('admin_menu', 'wpw_admin_menu');
 add_action('wpw_admin_menu', 'wpw_add_admin_menu');
 function wpw_admin_menu()
 {
-	do_action('wpw_admin_menu');	
+do_action('wpw_admin_menu');
 }
 function wpw_add_admin_menu(){
-	$menu_title = apply_filters('wpw_admin_menu_title_filter',__('EMR Redirect','wpw'));
-	if(function_exists(add_object_page))
-    {
-       add_object_page("EMR Redirect Admin Menu",  $menu_title, TEMPL_ACCESS_USER, 'wpw_theme_options', 'wpw_theme_options_options_page', WPW_ADMIN_URL.'/images/favicon.ico'); // title of new sidebar
-    }
-    else
-    {
-       add_theme_page("Admin Menu",  $menu_title, TEMPL_ACCESS_USER, 'wpw_theme_options', 'wpw_theme_options_options_page', WPW_ADMIN_URL.'/images/favicon.ico'); // title of new sidebar
-    }
+$menu_title = apply_filters('wpw_admin_menu_title_filter',__('EMR Redirect','wpw'));
+add_object_page("EMR Redirect Admin Menu", $menu_title, TEMPL_ACCESS_USER, 'wpw_theme_options', 'wpw_theme_options_options_page', WPW_ADMIN_URL.'/images/favicon.ico');
 }
-
 require_once ('admin-interface.php');  // Admin Interfaces
 require_once ('theme-options.php');   // Options panel settings
-
 //*******************************************************
-
 function wpw_theme_url()
 {
 	return get_stylesheet_directory_uri();
 }
-
-
 //print_r(get_option('wpw_options'));
 //
 function wpw_get_option($name) {
@@ -46,14 +32,12 @@ function wpw_get_option($name) {
     if (isset($options[$name]))
         return $options[$name];
 }
-
 //
 function wpw_update_option($name, $value) {
     $options = get_option('wpw_options');
     $options[$name] = $value;
     return update_option('wpw_options', $options);
 }
-
 //
 function wpw_delete_option($name) {
     $options = get_option('wpw_options');
@@ -61,12 +45,12 @@ function wpw_delete_option($name) {
     return update_option('wpw_options', $options);
 }
 
-if($_POST['page']=='wpw_theme_options' && $_POST['wpw_designerpress_css_code_disable'])
+if(isset($_POST['page']) && 'wpw_theme_options' && $_POST['wpw_designerpress_css_code_disable'])
 {
 	update_option('wpw_designerpress_css_code_disable', $_POST['wpw_designerpress_css_code_disable']);
 }
 
-if($_GET['page']=='wpw_theme_options' && $_GET['settingsbackup']==1)
+if(isset($_GET['page']) && 'wpw_theme_options' && isset($_GET['settingsbackup']))
 {
 	if($_GET['settingsdelete']==1)
 	{
@@ -169,6 +153,6 @@ if($css_code_disable=='yes')
 </form>
 <br />
 <?php
-	exit;
+exit;
 }
 ?>
