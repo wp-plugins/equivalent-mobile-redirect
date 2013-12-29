@@ -13,6 +13,8 @@ Detect and redirect mobile visitors to the equivalent page on your mobile site.
 == Description ==
 This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. Redirects are set by enabling/disabling the checkbox and/or by entering the page title you want to redirect and a corresponding URL. You can also choose whether or not to redirect tablets by enabling or disabling the checkbox option. By default there are up to 18 possible redirects. This plugin also gives you the ability to allow mobile viewers to bypass the mobile redirect and "View Full Site" by using a cookie that can easily be set on your mobile site. If you want to use this feature set a link to "http://example.com/?view_full_site=true" anywhere on your mobile site.
 
+The plugin is compatible with child themes and also works with multisite.
+
 == Installation ==
 
 = Automatic Installation =
@@ -21,7 +23,7 @@ This WordPress plugin will detect mobile devices and redirect the user to the eq
 3. Next search for Equivalent Mobile Redirect and click the install button.
 4. Locate the "EMR Redirect" settings menu
 5. Enable mobile redirect by checking the enable checkbox.
-6. Enable Homepage redirect by checking the enbale checkbox and enter the corrosponding mobile site URL (ex. http://example.com).
+6. Enable Homepage redirect by checking the enable checkbox and entering the corrosponding mobile site URL (ex. http://example.com).
 7. Fill in the full site page title (ex. About) and the equivalent mobile site URL (ex. http://example.com) you would like to redirect the mobile visitors to.
 8.  Select "Save Options".
 
@@ -66,7 +68,6 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 * Added checkbox to enable/disable homepage redirect
 * Added more possible redirects
 
-
 = 1.0.2 (2013/07/18) =
 * Quick clean up
 
@@ -74,6 +75,4 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 * Inital release
 
 == To Do ==
-* Admin options to exclude tablets from mobile redirect
 * Admin settings update with custom cookie time
-
