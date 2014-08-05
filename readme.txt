@@ -2,18 +2,27 @@
 
 Contributors: uniquelylost
 Tags: mobile redirect, mobile detect, equivalent, mobile, redirection, detection
-Requires at least: 3.3
-Tested up to: 3.8
-Stable tag: 1.5
+Requires at least: 3.0
+Tested up to: 3.9.1
+Stable tag: 2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Detect and redirect mobile visitors to the equivalent page on your mobile site.
 
 == Description ==
-This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page as set in the plugin admin panel. Redirects are set by enabling/disabling the checkbox and/or by entering the page title you want to redirect and a corresponding URL. You can also choose whether or not to redirect tablets by enabling or disabling the checkbox option. By default there are up to 18 possible redirects. This plugin also gives you the ability to allow mobile viewers to bypass the mobile redirect and "View Full Site" by using a cookie that can easily be set on your mobile site. If you want to use this feature set a link to "http://example.com/?view_full_site=true" anywhere on your mobile site.
+UPGRADE TO VERSION 2.0 AT YOUR OWN RISK. PRIOR VERSIONS SETTINGS WILL BE LOST!
+This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page/post as set in the metabox that is added to your page and post screens upon activation. This plugin also gives you the ability to allow mobile viewers to bypass the mobile redirect and "View Full Site" by using a cookie that can be set on your mobile site. If you want to use this feature set a link to "http://example.com/?view_full_site=true" anywhere on your mobile site.
 
-The plugin is compatible with child themes and also works with multisite.
+= Features =
+* Unlimited possible page/post redirects
+* Set mobile url in meta box on page/post
+* Up to date mobile library 8/4/14 http://mobiledetect.net/
+* Google recommended 302 redirects https://developers.google.com/webmasters/smartphone-sites/change-configuration
+* Optionally let mobile vistors "View Full Site"
+* Built in support for custom post types
+* Compatible with multisite
+* Fork of https://wordpress.org/plugins/speedy-page-redirect/
 
 == Installation ==
 
@@ -21,31 +30,20 @@ The plugin is compatible with child themes and also works with multisite.
 1. Login to your Dashboard as admin.
 2. Once logged in select Plugins -> Add New.
 3. Next search for Equivalent Mobile Redirect and click the install button.
-4. Locate the "EMR Redirect" settings menu
-5. Enable mobile redirect by checking the enable checkbox.
-6. Enable Homepage redirect by checking the enable checkbox and entering the corrosponding mobile site URL (ex. http://example.com).
-7. Fill in the full site page title (ex. About) and the equivalent mobile site URL (ex. http://example.com) you would like to redirect the mobile visitors to.
-8.  Select "Save Options".
+4. Set mobile redirects in the metabox on pages and posts
 
 = Manual Install =
 1. Extract the contents of equivalent-mobile-redirect.zip and upload to the wp-content/plugins folder.
 2. Activate the plugin through the 'Plugins' menu in WordPress
-4. Locate the "EMR Redirect" settings menu
-5. Enable mobile redirect by checking the enable checkbox.
-6. Enable Homepage redirect by checking the enbale checkbox and enter the corrosponding mobile site URL (ex. http://example.com).
-7. Fill in the full site page title (ex. About) and the equivalent mobile site URL (ex. http://example.com) you would like to redirect the mobile visitors to.
-8.  Select "Save Options".
+3. Set mobile redirects in the metabox on pages and posts
 
 
 == Frequently Asked Questions ==
 
 = I activated the plugin and nothing happened? =
-This plugin will only redirect users who view the site on a mobile device and you must first fill in the page title(s) and redirect URL(s) in the plugin settings.
+This plugin will only redirect users who view the site on a mobile device and you must first fill in redirects in the metabox on pages and posts.
 
-= What format should I add the page title in the settings page? =
-You should add the page title the exact way it is spelled and you can one add 1 page title per text box. For example: Home
-
-= What format should I add the mobile URL in the settings page? =
+= What format should I add the mobile URL in the metabox? =
 You should add the full mobile URL including the "http://". For example: http://example.com
 
 = How can I give my users the option to view the full site =
@@ -56,6 +54,11 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 1. Screenshot of admin page
 
 == Changelog ==
+= 2.0 (2013/8/4) =
+* Complete rewrite
+* Changed how mobile redirects are set.
+* Tested compatibility with wordpress 3.9.1
+
 = 1.5 (2013/12/26) =
 * Cleaned up notices and warnings
 * Tested compatibility with child themes
@@ -75,4 +78,3 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 * Inital release
 
 == To Do ==
-* Admin settings update with custom cookie time
