@@ -2,11 +2,16 @@
 /*
 Plugin Name: Equivalent Mobile Redirect
 Description: This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page or post. 
-Version: 2.0
+Version: 2.1
 Author: uniquelylost
 Author URI: http://ndgraphic.com
 License: GPL3
 */
+
+//START ADD ADMIN PANEL
+require_once ('includes/emr-options.php' );
+
+//END ADD ADMIN PANEL
 
 // Start your engines!
 new NDG_Speedy_Page_Redirect;
@@ -18,23 +23,15 @@ class NDG_Speedy_Page_Redirect {
 	 *
 	 * @const string
 	 */
-	const VERSION = '2.0';
+	const VERSION = '2.1';
 
 	/**
 	 * List of post types for which to enable this plugin.
-	 * Note: can be filtered via "gdd_spr_post_types".
+	 * Note: can be filtered via "ndg_spr_post_types".
 	 *
 	 * @var array
 	 */
 	public $post_types;
-
-	/**
-	 * List of redirection types: key = HTTP response status code, value = description.
-	 * Note: can be filtered via "gdd_spr_statuses".
-	 *
-	 * @var array
-	 */
-	public $statuses;
 
 	/**
 	 * Redirection data from the postmeta table, structured by blog_id and post_id.
@@ -50,7 +47,7 @@ class NDG_Speedy_Page_Redirect {
 	 */
 	public function __construct() {
 		// Run update routine if needed, also upon activation
-		if ( version_compare( self::VERSION, get_option( 'gdd_spr_version', 0 ), '>' ) ) {
+		if ( version_compare( self::VERSION, get_option( 'ndg_spr_version', 0 ), '>' ) ) {
 			$this->update();
 		}
 
@@ -65,7 +62,7 @@ class NDG_Speedy_Page_Redirect {
 	 */
 	public function update() {
 		// Store version of the installed plugin for future updates
-		update_option( 'gdd_spr_version', self::VERSION );
+		update_option( 'ndg_spr_version', self::VERSION );
 	}
 
 	/**
@@ -82,7 +79,7 @@ class NDG_Speedy_Page_Redirect {
 		);
 
 		// Allow user to modify the post types
-		$this->post_types = apply_filters( 'gdd_spr_post_types', $this->post_types );
+		$this->post_types = apply_filters( 'ndg_spr_post_types', $this->post_types );
 
 		// Avoid needless work
 		if ( empty( $this->post_types ) )
@@ -90,16 +87,6 @@ class NDG_Speedy_Page_Redirect {
 
 		// Mirror the post types array so we can do fast isset() checks on the keys
 		$this->post_types = array_combine( $this->post_types, $this->post_types );
-
-		// Array with types of redirects: key = HTTP response status code, value = description
-		// Note: first element in the array will be selected by default
-		$this->statuses = array(
-			301 => sprintf( __( 'Permanent', 'speedy-page-redirect' ), '301' ),
-			302 => sprintf( __( 'Temporary', 'speedy-page-redirect' ), '302' ),
-		);
-
-		// Allow user to modify the status list
-		$this->statuses = apply_filters( 'gdd_spr_statuses', $this->statuses );
 
 		// Add the link actions only for the applicable post types: pages, posts and/or custom post types
 		if ( isset( $this->post_types['page'] ) ) {
@@ -131,7 +118,7 @@ class NDG_Speedy_Page_Redirect {
 	public function add_meta_boxes() {
 		// Add meta box for each post type
 		foreach ( $this->post_types as $post_type ) {
-			add_meta_box( 'gdd_page_redirect', __( 'Mobile Redirect', 'speedy-page-redirect' ), array( $this, 'meta_box_show' ), $post_type );
+			add_meta_box( 'ndg_page_redirect', __( 'Mobile Redirect', 'thespeedy-page-redirect' ), array( $this, 'meta_box_show' ), $post_type );
 		}
 	}
 
@@ -155,12 +142,12 @@ class NDG_Speedy_Page_Redirect {
 		$values = array_merge( $default, $data );
 
 		// Add a hidden nonce field for security
-		wp_nonce_field( 'gdd_spr_' . $post->ID, 'gdd_spr_nonce', false );
+		wp_nonce_field( 'ndg_spr_' . $post->ID, 'ndg_spr_nonce', false );
 
 		// Output the URL field
 		echo '<p>';
-		echo '<label for="gdd_spr_url">' . __( 'Mobile URL:', 'speedy-page-redirect' ) . '</label> ';
-		echo '<input id="gdd_spr_url" name="gdd_spr_url" type="url" value="' . esc_url( $values['url_raw'] ) . '" size="50" style="width:80%">';
+		echo '<label for="ndg_spr_url">' . __( 'Mobile URL:', 'thespeedy-page-redirect' ) . '</label> ';
+		echo '<input id="ndg_spr_url" name="ndg_spr_url" type="url" value="' . esc_url( $values['url_raw'] ) . '" size="50" style="width:80%">';
 		echo '</p>';
 	}
 
@@ -172,24 +159,16 @@ class NDG_Speedy_Page_Redirect {
 	 */
 	public function save_post( $post_id ) {
 		// Validate nonce
-		if ( ! isset( $_POST['gdd_spr_nonce'] ) || ! wp_verify_nonce( $_POST['gdd_spr_nonce'], 'gdd_spr_' . $post_id ) )
+		if ( ! isset( $_POST['ndg_spr_nonce'] ) || ! wp_verify_nonce( $_POST['ndg_spr_nonce'], 'ndg_spr_' . $post_id ) )
 			return;
 
 		// Basic clean of the entered URL if any
-		$url = ( isset( $_POST['gdd_spr_url'] ) ) ? trim( (string) $_POST['gdd_spr_url'] ) : '';
+		$url = ( isset( $_POST['ndg_spr_url'] ) ) ? trim( (string) $_POST['ndg_spr_url'] ) : '';
 
 		// A URL was entered (standalone protocols like "http://" are considered emtpy)
 		if ( '' !== $url && ! preg_match( '~^[-a-z0-9+.]++://$~i', $url ) ) {
 			// Prepare data array to store in the database
 			$data['url'] = esc_url_raw( $url );
-			// Grab first status key from the list by default
-			$data['status'] = (int) key( $this->statuses );
-			$data['status'] = ( ! empty( $data['status'] ) ) ? $data['status'] : 301;
-
-			// Overwrite the default status with the selected one if any
-			if ( isset( $_POST['gdd_spr_status'] ) && isset( $this->statuses[ (int) $_POST['gdd_spr_status'] ] ) ) {
-				$data['status'] = (int) $_POST['gdd_spr_status'];
-			}
 
 			// Save the data in the postmeta table
 			update_post_meta( $post_id, '_ndg_Speedy_Page_Redirect', $data );
@@ -218,10 +197,6 @@ class NDG_Speedy_Page_Redirect {
 
 		// No redirection data found
 		if ( ! $data = $this->get_post_data( $post_id ) )
-			return $url;
-
-		// Only hard-code the destionation URL in case of a permanent redirect
-		if ( 301 != $data['status'] )
 			return $url;
 
 		// Return the destination URL
@@ -275,7 +250,12 @@ class NDG_Speedy_Page_Redirect {
 		if (empty($full_site_cookie)){
 			include('includes/Mobile_Detect.php');
 			$detect = new Mobile_Detect();
-			if ($detect->isMobile()){
+			$options = get_option('rooter2484_theme_options');
+			$selectedemr = $options['emrlego'];
+			if ($detect->isTablet() && $selectedemr == tv) {
+			$detect = "false";
+			}
+			elseif ($detect->isMobile()){
 				// Finally do the redirect and quit
 				wp_redirect( $data['url'], 302);
 			exit;
