@@ -2,7 +2,7 @@
 /*
 Plugin Name: Equivalent Mobile Redirect
 Description: This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page or post. 
-Version: 2.1
+Version: 2.2
 Author: uniquelylost
 Author URI: http://ndgraphic.com
 License: GPL3
@@ -23,7 +23,7 @@ class NDG_Speedy_Page_Redirect {
 	 *
 	 * @const string
 	 */
-	const VERSION = '2.1';
+	const VERSION = '2.2';
 
 	/**
 	 * List of post types for which to enable this plugin.
