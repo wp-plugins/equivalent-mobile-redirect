@@ -3,26 +3,28 @@
 Contributors: uniquelylost
 Tags: mobile redirect, mobile detect, equivalent, mobile, redirection, detection, redirect
 Requires at least: 3.0
-Tested up to: 3.9.2
-Stable tag: 2.1
+Tested up to: 4.2.2
+Stable tag: 2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Detect and redirect mobile visitors to the equivalent page on your mobile site.
 
 == Description ==
-VERSION 2.1 ADDS ABILITY TO REDIRECT TABLETS AS MOBILE OR NOT TO
 This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page/post as set in the metabox that is added to your page and post screens upon activation. This plugin also gives you the ability to allow mobile viewers to bypass the mobile redirect and "View Full Site" by using a cookie that can be set on your mobile site. If you want to use this feature set a link to "http://example.com/?view_full_site=true" anywhere on your mobile site.
+
+VERSION 2.2 UPDATES THE MOBILE DETECTION DEVICE LIBRARY
 
 = Features =
 * Unlimited possible page/post redirects
 * Set mobile url in meta box on page/post
 * Option to redirect tablets as mobile or not
-* Up to date mobile library 8/4/14 http://mobiledetect.net/
+* Up to date mobile library 5/26/15 http://mobiledetect.net/
 * Google recommended 302 redirects https://developers.google.com/webmasters/smartphone-sites/change-configuration
 * Optionally let mobile vistors "View Full Site"
 * Built in support for custom post types
 * Compatible with multisite
+
 
 For More Documentation Download the Documentation <a href="http://ndgraphic.com/wp-content/uploads/2014/08/documentation.zip">Here</a>
 == Installation ==
@@ -59,6 +61,10 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 1. Screenshot of admin page
 
 == Changelog ==
+= 2.2 (2015/5/26) =
+* Updated mobile detection device library
+* Tested compatibility with wordpress 4.2.2
+
 = 2.1 (2014/8/23) =
 * Added option to redirect tablets as mobile or not to.
 * Cleaned up some code
@@ -85,4 +91,4 @@ If you want to use this feature set a link to "http://example.com/?view_full_sit
 * Quick clean up
 
 = 1.0.1 (2013/07/16) =
-* Inital release
+* Initial release
