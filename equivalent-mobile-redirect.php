@@ -2,7 +2,7 @@
 /*
 Plugin Name: Equivalent Mobile Redirect
 Description: This WordPress plugin will detect mobile devices and redirect the user to the equivalent mobile page or post. 
-Version: 2.2
+Version: 2.3
 Author: uniquelylost
 Author URI: http://ndgraphic.com
 License: GPL3
@@ -210,18 +210,6 @@ class NDG_Speedy_Page_Redirect {
 	 */
 	public function template_redirect() {
 		global $post;
-
-		// Redirects only apply to pages or single posts
-		if ( ! is_page() && ! is_single() && ! is_front_page() )
-			return;
-
-		// Only continue if page redirection is enabled for this post type
-		if ( ! isset( $this->post_types[ (string) get_post_type( $post ) ] ) )
-			return;
-			
-		// No redirection data found for this post
-		if ( ! $data = $this->get_post_data( $post->ID ) )
-			return;
 			
 		//Let's see if we should set the full site cookie	
 		if(isset($_GET['view_full_site'])){ 
@@ -247,20 +235,61 @@ class NDG_Speedy_Page_Redirect {
 			$full_site_cookie= $_COOKIE['mobilethe_wp_full_site']; 
 		}
 		//cookie empty then include
-		if (empty($full_site_cookie)){
+			if (empty($full_site_cookie)){
 			include('includes/Mobile_Detect.php');
 			$detect = new Mobile_Detect();
 			$options = get_option('rooter2484_theme_options');
 			$selectedemr = $options['emrlego'];
-			if ($detect->isTablet() && $selectedemr == tv) {
-			$detect = "false";
+			$emrredirectall = $options['emrall'];
+			$emrredirectallurl = $options['redirallurl'];
+			$emrfront = $options['emrfrontpage'];
+			$emrfronturl = $options['frontpageurl'];
+			global $post;
+			
+				if ($detect->isMobile() && $emrredirectall == rediryes) {
+					if ($detect->isTablet() && $selectedemr == tv) {
+						$detect = "false";
+					}		
+					elseif ($emrredirectallurl !=""){ // redirect all and quit
+						wp_redirect( $emrredirectallurl, 302);
+						exit;
+					}
+				}
+				
+				elseif ($detect->isMobile() && $emrfront == frontyes && is_home()) {
+					if ($detect->isTablet() && $selectedemr == tv) {
+						$detect = "false";
+					}
+					elseif ($emrfronturl !=""){
+						wp_redirect( $emrfronturl, 302);
+						exit;
+					}
+				}
+				
+			
+				elseif ($detect->isMobile()){
+					if ($detect->isTablet() && $selectedemr == tv) {
+						$detect = "false";
+					}
+					else { // Finally do the regular redirect and quit
+						// Redirects only apply to pages or single posts
+						if ( ! is_page() && ! is_single() && ! is_front_page() )
+						return;
+
+						// Only continue if page redirection is enabled for this post type
+						if ( ! isset( $this->post_types[ (string) get_post_type( $post ) ] ) )
+						return;
+			
+						// No redirection data found for this post
+						if ( ! $data = $this->get_post_data( $post->ID ) )
+						return;
+					
+						else { wp_redirect( $data['url'], 302);
+						exit;
+						}
+					}
+				}
 			}
-			elseif ($detect->isMobile()){
-				// Finally do the redirect and quit
-				wp_redirect( $data['url'], 302);
-			exit;
-			}
-		}
 	}
 
 	/**
